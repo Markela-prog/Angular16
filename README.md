@@ -1,27 +1,36 @@
-# ProjectTemplate
+# Module based
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0-rc.5.
+**ngIf**
 
-## Development server
+`<p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**else**
 
-## Code scaffolding
+```
+<p *ngIf="serverCreated; else noServer">Server was created, server name is {{ serverName }}</p>
+<ng-template #noServer>
+    <p>No server was created!</p>
+</ng-template>
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<hr>
 
-## Build
+**ngStyle**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`<p [ngStyle]="{backgroundColor: getColor()}">Server with ID {{ serverId }} is {{ getServerStatus() }}</p>`
 
-## Running unit tests
+```
+getColor() {
+    return this.serverStatus === 'online' ? 'green' : 'red';
+  }
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<hr>
 
-## Running end-to-end tests
+**ngClass**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+`<p [ngStyle]="{backgroundColor: getColor()}" [ngClass]="{online: serverStatus === 'online'}">Server with ID {{ serverId }} is {{ getServerStatus() }}</p>`
 
-## Further help
+**ngFor**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`<app-server *ngFor="let server of servers" />`
